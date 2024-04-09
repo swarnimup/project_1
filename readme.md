@@ -29,49 +29,42 @@ Setting the headers dictionary in the request to include the API key as the Auth
 Sending API Request: Using the requests library to send a POST request to the API endpoint with the constructed parameters and headers.
 Processing Response: Handling the API response appropriately, such as checking for errors and extracting the concise summary from the JSON response.
 
-Code:
+To use this tool, follow these steps:
 
-Python
-import openai
+1. Clone this repository to your local machine.
+2. Navigate to the project directory in your terminal.
+3. Create a virtual environment (optional but recommended).
+4. Install the required dependencies using the provided `requirements.txt` file:
 
-openai.api_key = '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'
 
-def summarize_article(file_path):
-    with open(file_path, 'r', encoding='utf-8') as file:
-        article_content = file.read()
-    
-    # Call the GPT-3.5 model to summarize the article
-    response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=f"Summarize this article:\n\n{article_content}",
-        max_tokens=150
-    )
-    
-    summary = response['choices'][0]['text']
-    return summary
+## Usage
 
-def main():
-    # List of paths to your article files
-    article_files = ['./article1.txt', './article2.txt']  # Add your file paths here
-    
-    for file_path in article_files:
-        summary = summarize_article(file_path)
-        summary_file_path = file_path.replace('.txt', '_summary.txt')
-        
-        with open(summary_file_path, 'w', encoding='utf-8') as summary_file:
-            summary_file.write(summary)
-        print(f'Summary saved to {summary_file_path}')
+1. Ensure that you have your article files ready. The articles should be in plain text format (.txt).
+2. Update the `article_files` list in the `project3.py` file with the paths to your article files.
+3. Run the `project3.py` script using Python 3:
+4. The summaries will be generated and saved as separate files with `_summary.txt` appended to the original filenames.
 
-if __name__ == "__main__":
-    main()
+## File Structure
 
-Explanation:
+- `project3.py`: The main Python script that orchestrates the summarization process.
+- `requirements.txt`: A file containing the required Python packages for this project.
+- `processed_article*.txt`: Sample article files. Replace these with your own article files.
+- `venv/`: A virtual environment directory (automatically created when you create a virtual environment).
 
-The code imports the openai library for accessing OpenAI's API.
-It sets the API key for authentication with OpenAI's services.
-The summarize_article function reads an article file, sends its content as a prompt to OpenAI for summarization, and returns the generated summary.
-The main function iterates over a list of article files, calls summarize_article for each file, and saves the generated summaries to new files.
-Finally, the script executes the main function when run directly.
+## Configuration
+
+- `openai.api_key`: Set your OpenAI API key in the `project3.py` file to authenticate with the OpenAI API.
+
+## Notes
+
+- This tool uses OpenAI's ChatCompletion API to generate summaries, so a stable internet connection is required.
+- Ensure that your article files are in plain text format (.txt) and are accessible from the project directory.
+
+## Credits
+
+This project utilizes OpenAI's GPT-3.5 model for text summarization.
+
+
 
 
 Article Summarization Pipeline:

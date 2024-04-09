@@ -1,0 +1,6 @@
+name: venv
+channels:
+  - defaults
+dependencies:
+  - pip:
+    - openai==0.28
